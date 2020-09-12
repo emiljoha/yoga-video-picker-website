@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Yoga Video Picker</h1>
+    <script>
+      function OpenWindowWithYogaVideo(minutes)
+      {
+          url = "http://localhost:5000/YogaVideo?minutes=" + minutes
+          var xmlHttp = new XMLHttpRequest();
+          xmlHttp.onreadystatechange = function() {
+              if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                  response = JSON.parse(xmlHttp.responseText)
+                  window.open(response.url, "_self")
+              }
+          }
+          xmlHttp.open("GET", url, true); // true for asynchronous
+          xmlHttp.send(null);
+      }
+    </script>
+    <button class="button" onClick="OpenWindowWithYogaVideo(10);">
+      <span class="icon">10 minutes</span>
+    </button>
+    <button class="button" onClick="OpenWindowWithYogaVideo(15);">
+      <span class="icon">15 minutes</span>
+    </button>
+    <button class="button" onClick="OpenWindowWithYogaVideo(20);">
+      <span class="icon">20 minutes</span>
+    </button>
+  </body>
+</html>
